@@ -1,0 +1,29 @@
+sudo apt update
+sudo apt install docker docker.io mc mcedit -y
+git clone https://github.com/docker/getting-started-app.git
+cd getting-started-app/
+touch Dockerfile
+mcedit Dockerfile
+
+paste:
+# syntax=docker/dockerfile:1
+
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
+
+sudo docker build -t gs .
+sudo docker run -p 80:3000 gs
+
+
+
+
+sudo docker kill <id>
+
+
+
+
+
